@@ -1,0 +1,51 @@
+-- CREATE Student table
+CREATE TABLE Student (
+    Roll_no INT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Father_name VARCHAR(50) NOT NULL,
+    Branch VARCHAR(50) NOT NULL
+);
+
+-- CREATE Book table
+CREATE TABLE Book (
+    ISBN VARCHAR(20) PRIMARY KEY,
+    Title VARCHAR(100) NOT NULL,
+    Author VARCHAR(50) NOT NULL,
+    Publisher VARCHAR(50) NOT NULL
+);
+
+-- CREATE Issue table
+CREATE TABLE Issue (
+    Roll_no INT NOT NULL,
+    ISBN VARCHAR(20) NOT NULL,
+    Date_of_issue DATE NOT NULL,
+    PRIMARY KEY (Roll_no, ISBN),
+    FOREIGN KEY (Roll_no) REFERENCES Student(Roll_no),
+    FOREIGN KEY (ISBN) REFERENCES Book(ISBN)
+);
+
+-- INSERT 5 values to Student
+INSERT INTO Student (Roll_no, Name, Father_name, Branch) VALUES
+    (101, 'John Smith', 'Michael Smith', 'CSE'),
+    (102, 'Rex', 'David Johnson', 'Mechanical Engineering'),
+    (103, 'James Davis', 'Robert Davis', 'Electrical Engineering'),
+    (104, 'Sarah Wilson', 'Peter Wilson', 'CSE'),
+    (105, 'Smith', 'Andrew Brown', 'Chemical Engineering');
+    
+-- INSERT 5 values to Book
+INSERT INTO Book (ISBN, Title, Author, Publisher) VALUES
+    ('9780132166751', 'Clean Code', 'Robert C. Martin', 'Prentice Hall'),
+    ('9780321856715', 'Effective Java', 'Joshua Bloch', 'Addison-Wesley Professional'),
+    ('9781449308360', 'Learning Python', 'Mark Lutz', 'Bryan'),
+    ('9781449340377', 'Fluent Python', 'Luciano Ramalho', 'Bryan'),
+    ('9780596517748', 'Head First Design Patterns', 'Eric Freeman and Elisabeth Robson', 'Bryan');
+
+-- INSERT 5 values to Issue
+INSERT INTO Issue (Roll_no, ISBN, Date_of_issue) VALUES
+    (101, '9780132166751', '2022-01-01'),
+    (102, '9780321856715', '2011-02-05'),
+    (103, '9781449308360', '2022-03-10'),
+    (104, '9781449340377', '2010-04-15'),
+    (105, '9780596517748', '2018-03-29');
+
+desc Student
